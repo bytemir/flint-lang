@@ -1,1 +1,1 @@
-# flint
+# flint-lang
