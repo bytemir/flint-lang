@@ -4,15 +4,18 @@
 #define MAX_LINE_LENGTH 512
 
 typedef enum {
-    SYNTAX,
-    IDENTIFIER,
-    NUMBER,
-    END_OF_FILE,
+    TOKEN_SYMBOL = 0,
+    TOKEN_STRING_LITERAL,
+    TOKEN_IDENTIFIER,
+    TOKEN_SYNTAX,
+    TOKEN_DATATYPE,
+    TOKEN_INTEGER_LITERAL
 } TokenType;
 
 typedef struct {
     TokenType Type;
     const char* Value;
+    int Line;
 } Token;
 
 
@@ -23,6 +26,7 @@ bool AdvanceCharacter(char Lines[MAX_LINES][MAX_LINE_LENGTH]);
 void FreeTokenStream(void);
 void InitTokenStream(void);
 
+void DisplayTokenStream(void);
 Token* GenerateTokenStream(char Lines[MAX_LINES][MAX_LINE_LENGTH], int TotalLines);
 
 

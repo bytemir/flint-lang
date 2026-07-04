@@ -13,7 +13,7 @@ int main(void) {
 
     FILE *File = fopen(TestCase, "r");
     
-    if (File== NULL) { perror("Error opening file"); return 1; }
+    if (File== NULL) { perror("Error opening file!\n"); return 1; }
 
     char Lines[MAX_LINES][MAX_LINE_LENGTH];
     int TotalLines = 0;
@@ -24,8 +24,9 @@ int main(void) {
     }
 
     fclose(File);
+    printf("--------------------------------------------------\n");
     printf("Successfully read %d lines:\n", TotalLines);
-
+    printf("--------------------------------------------------\n");
     for (int i = 0; i < TotalLines; i++) { printf("%i.  %s\n", i+1, Lines[i]); }
 
     Token* TokenStream = GenerateTokenStream(Lines, TotalLines);

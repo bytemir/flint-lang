@@ -1,5 +1,5 @@
-let string foo = "bar";
-let int baz = 0;
-
+var string foo = "bar";
+var int baz = 0;
+const string a = "bcd";
 print(foo);
 print(baz);
