@@ -1,0 +1,5 @@
+let string foo = "bar";
+let int baz = 0;
+
+print(foo);
+print(baz);
