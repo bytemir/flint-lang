@@ -1,0 +1,5 @@
+var int inp;
+print("Enter a number: ", inp);
+input("%d", inp);
+print("You entered the number -> %d\n", inp);
+print("Heres the same number but + 2-> %d\n", inp+2);

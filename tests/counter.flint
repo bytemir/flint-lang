@@ -1,0 +1,11 @@
+var int x;
+var int counter = 0;
+
+print("Enter a number to count to: ");
+input("%d", x);
+
+
+while (counter != x) {
+    counter++;
+    print("The value is: %d\n", counter);
+}

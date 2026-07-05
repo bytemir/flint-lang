@@ -8,7 +8,7 @@ OUTPUT="$TARGET_DIR/flint"
 mkdir -p "$TARGET_DIR"
 
 echo "Compiling Flint components..."
-$CC $CFLAGS src/Codegen.c src/Lexxer.c src/Main.c src/Parser.c -o "$OUTPUT"
+$CC $CFLAGS src/Codegen.c src/Lexxer.c src/Main.c  -o "$OUTPUT"
 
 echo "Build successful! Executable created at: $OUTPUT"
 "$OUTPUT" "$@"

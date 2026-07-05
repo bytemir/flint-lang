@@ -1,0 +1,24 @@
+var int terms = 10;
+var int first = 0;
+var int second = 1;
+var int next = 0;
+var int count = 0;
+
+print("--- Fibonacci Sequence (%d terms) ---\n", terms);
+
+while (count < terms) {
+    if (count <= 1) {
+        next = count;
+    }
+    
+    if (count > 1) {
+        next = first + second;
+        first = second;
+        second = next;
+    }
+    
+    print("%d ", next);
+    count = count + 1;
+}
+
+print("\n-----------------------------------\n");

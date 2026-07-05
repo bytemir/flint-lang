@@ -21,7 +21,13 @@ static int TotalFileLines = 0;
 
 static const char* RecognisedSyntax[] = {
     "var",
-    "print"
+    "print",
+    "while",
+    "if",
+    "for",
+    "printf",
+    "strcmp",
+    "input",
 };
 
 static const int RecognisedSyntaxCount = sizeof(RecognisedSyntax) / sizeof(char*);
@@ -30,7 +36,6 @@ static const int RecognisedSyntaxCount = sizeof(RecognisedSyntax) / sizeof(char*
 
 
 static const char* RecognisedDataTypes[] = {
-    "const"
     "string",
     "int"
 };
@@ -41,10 +46,14 @@ static const int RecognisedDataTypesCount = sizeof(RecognisedDataTypes) / sizeof
 
 static const char RecognisedChars[] = {
     '(', ')',
-    '=',
+    '=', '!',
     ';',
     '+', '-',
-    '/', '*'
+    '/', '*',
+    '{', '}',
+    '<', '>',
+    '%', ',',
+    39
 };
 static const int RecognisedCharsCount = sizeof(RecognisedChars) / sizeof(char);
 
@@ -63,7 +72,7 @@ void PushToken(Token token) {
     TokenCount++;
 }
 
-bool AdvanceLine(char Lines[MAX_LINES][MAX_LINE_LENGTH]) {
+bool AdvanceLine() {
     CurrentLineIndex++;
     CurrentCharacterIndex = 0;
 
@@ -131,10 +140,11 @@ void DisplayTokenStream(void) {
     printf("--------------------------------------------------\n\n");
 }
 
-Token* GenerateTokenStream(char Lines[MAX_LINES][MAX_LINE_LENGTH], int TotalLines) {
+Token* GenerateTokenStream(char Lines[MAX_LINES][MAX_LINE_LENGTH], int TotalLines, int* pTokenCount) {
     InitTokenStream();
     TotalFileLines = TotalLines;
 
+    *pTokenCount = 0;
     CurrentLineIndex = 0; CurrentCharacterIndex = 0;
 
     if (TotalFileLines == 0) { CurrentLineIndex = 0; CurrentCharacterIndex = -1; return TokenStream; }
@@ -252,6 +262,8 @@ Token* GenerateTokenStream(char Lines[MAX_LINES][MAX_LINE_LENGTH], int TotalLine
         
         CanAdvanceCharacter = AdvanceCharacter(Lines);
     }
+    
+    *pTokenCount = TokenCount;
 
     DisplayTokenStream();
     return TokenStream;

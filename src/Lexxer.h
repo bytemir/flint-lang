@@ -9,7 +9,8 @@ typedef enum {
     TOKEN_IDENTIFIER,
     TOKEN_SYNTAX,
     TOKEN_DATATYPE,
-    TOKEN_INTEGER_LITERAL
+    TOKEN_INTEGER_LITERAL,
+    TOKEN_EMPTY
 } TokenType;
 
 typedef struct {
@@ -20,13 +21,13 @@ typedef struct {
 
 
 void PushToken(Token token);
-bool AdvanceLine(char Lines[MAX_LINES][MAX_LINE_LENGTH]);
+bool AdvanceLine();
 bool AdvanceCharacter(char Lines[MAX_LINES][MAX_LINE_LENGTH]);
 
 void FreeTokenStream(void);
 void InitTokenStream(void);
 
 void DisplayTokenStream(void);
-Token* GenerateTokenStream(char Lines[MAX_LINES][MAX_LINE_LENGTH], int TotalLines);
+Token* GenerateTokenStream(char Lines[MAX_LINES][MAX_LINE_LENGTH], int TotalLines, int* TokenCount);
 
 
